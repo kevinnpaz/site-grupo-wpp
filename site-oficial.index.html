@@ -1,0 +1,633 @@
+<title>Comprei e Indico</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+
+<style>
+  :root {
+    --rose: #E8728A;
+    --rose-dark: #D45B74;
+    --rose-light: #FFF0F5;
+    --rose-border: #F9D0DC;
+    --green: #3EC972;
+    --green-dark: #2DB561;
+    --text-dark: #1C1C2E;
+    --text-mid: #4A4A5A;
+    --text-soft: #7A7A8C;
+    --bg: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --progress-track: #F5D0DC;
+    --toast-bg: #FFF8FA;
+    --banner-from: #E8728A;
+    --banner-to: #D45B74;
+    --outer-bg: #FDF0F4;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --rose-light: #2A1520;
+      --rose-border: #5A2535;
+      --bg: #100A0E;
+      --card-bg: #1C1018;
+      --progress-track: #3A2030;
+      --toast-bg: #1C1018;
+      --text-dark: #F2E4EA;
+      --text-mid: #C8A8B8;
+      --text-soft: #9A7A8A;
+      --outer-bg: #0D060A;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --rose-light: #2A1520;
+    --rose-border: #5A2535;
+    --bg: #100A0E;
+    --card-bg: #1C1018;
+    --progress-track: #3A2030;
+    --toast-bg: #1C1018;
+    --text-dark: #F2E4EA;
+    --text-mid: #C8A8B8;
+    --text-soft: #9A7A8A;
+    --outer-bg: #0D060A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    min-height: 100%;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--outer-bg);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* decorative dot pattern on desktop */
+    background-image: radial-gradient(circle, var(--rose-border) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* ── Page card wrapper ── */
+  .page-wrap {
+    width: 100%;
+    max-width: 480px;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    /* shadow on desktop to float the card */
+    box-shadow: none;
+  }
+
+  /* Tablet (≥600px) */
+  @media (min-width: 600px) {
+    .page-wrap {
+      margin-block: 32px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(232, 114, 138, 0.14), 0 2px 12px rgba(0,0,0,0.06);
+    }
+  }
+
+  /* Desktop (≥900px) — wider card, bigger type */
+  @media (min-width: 900px) {
+    .page-wrap {
+      max-width: 520px;
+      margin-block: 48px;
+      box-shadow: 0 16px 60px rgba(232, 114, 138, 0.18), 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .hero h1 {
+      font-size: 2.1rem !important;
+    }
+
+    .hero .subtitle {
+      font-size: 1rem !important;
+    }
+
+    .cta-btn {
+      font-size: 1.05rem !important;
+      padding: 20px 32px !important;
+    }
+
+    .card h3 {
+      font-size: 0.95rem !important;
+    }
+
+    .card p {
+      font-size: 0.8rem !important;
+    }
+  }
+
+  /* ── Banner ── */
+  .top-banner {
+    background: linear-gradient(90deg, var(--banner-from), var(--banner-to));
+    color: #fff;
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    animation: pulse-banner 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-banner {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.88; }
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: var(--rose-light);
+    padding: 36px 24px 32px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.55rem, 5vw, 2rem);
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--text-dark);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .hero h1 .heart { display: inline-block; }
+
+  .hero .subtitle {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--text-mid);
+    margin: 0;
+    max-width: 380px;
+  }
+
+  .social-proof {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--rose-dark);
+    background: var(--rose-border);
+    border-radius: 20px;
+    padding: 6px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .cta-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .cta-btn {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    padding: 18px 24px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(62, 201, 114, 0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+    animation: cta-breathe 2s ease-in-out infinite;
+  }
+
+  @keyframes cta-breathe {
+    0%, 100% { transform: scale(1); box-shadow: 0 6px 20px rgba(62, 201, 114, 0.35); }
+    50% { transform: scale(1.025); box-shadow: 0 10px 28px rgba(62, 201, 114, 0.48); }
+  }
+
+  .cta-btn:hover, .cta-btn:focus-visible {
+    transform: scale(1.03);
+    outline: none;
+    animation: none;
+    box-shadow: 0 10px 28px rgba(62, 201, 114, 0.5);
+  }
+
+  .cta-hint {
+    font-size: 0.75rem;
+    color: var(--text-soft);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .cta-hint span { opacity: 0.55; }
+
+  /* ── Vagas / Progress ── */
+  .vagas-block {
+    background: var(--rose-light);
+    padding: 0 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .vagas-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .vagas-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-mid);
+  }
+
+  .vagas-pct {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--rose-dark);
+  }
+
+  .progress-track {
+    width: 100%;
+    height: 10px;
+    background: var(--progress-track);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--rose), var(--rose-dark));
+    border-radius: 99px;
+    transition: width 1.2s ease;
+  }
+
+  .vagas-restam {
+    text-align: right;
+    font-size: 0.78rem;
+    color: var(--text-mid);
+  }
+
+  .vagas-restam strong {
+    color: var(--rose-dark);
+    font-weight: 700;
+  }
+
+  /* ── Separator ── */
+  .separator {
+    width: 100%;
+    height: 2px;
+    background: var(--rose-border);
+    opacity: 0.4;
+  }
+
+  /* ── Cards section ── */
+  .cards-section {
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: var(--bg);
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--rose-border);
+    border-radius: 18px;
+    padding: 20px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .card-icon {
+    width: 38px;
+    height: 38px;
+    background: var(--rose-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .card-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--rose);
+  }
+
+  .card h3 {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .card p {
+    font-size: 0.75rem;
+    color: var(--text-soft);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Links verificados — centered solo card */
+  .card-center {
+    align-items: center;
+    text-align: center;
+    max-width: 220px;
+    margin: 0 auto;
+    border-color: var(--rose-border);
+  }
+
+  /* ── Footer ── */
+  .footer {
+    background: var(--rose-light);
+    padding: 20px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-links {
+    font-size: 0.72rem;
+    color: var(--text-soft);
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: var(--text-soft);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .footer-credits {
+    font-size: 0.75rem;
+    color: var(--text-mid);
+    font-weight: 500;
+  }
+
+  /* ── Toast notification ── */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--toast-bg);
+    border: 1.5px solid var(--rose-border);
+    border-radius: 50px;
+    padding: 10px 18px 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 6px 24px rgba(232, 114, 138, 0.18);
+    white-space: nowrap;
+    z-index: 100;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  .toast-avatar {
+    width: 34px;
+    height: 34px;
+    background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .toast-text {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 1.3;
+  }
+
+  .toast-text span {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--text-soft);
+  }
+
+  /* ── Responsive small phones ── */
+  @media (max-width: 360px) {
+    .hero h1 { font-size: 1.35rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .card-center { max-width: 100%; }
+  }
+</style>
+
+<div class="page-wrap">
+
+  <!-- Banner -->
+  <div class="top-banner">✦ Últimas vagas disponíveis ✦</div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Amiga, eu garimpo as melhores promoções ocultas da internet de moda, beleza e casa <span class="heart">💖</span></h1>
+
+    <p class="subtitle">
+      Entre no meu Grupo VIP e receba todos os dias promoções reais, cupons que funcionam e achadinhos para você pagar pouco sem perder tempo procurando.
+    </p>
+
+    <div class="social-proof">✨ +56.750 mulheres já estão economizando</div>
+
+    <div class="cta-block">
+      <a class="cta-btn" href="https://chat.whatsapp.com/CAf6IrbAqNbLPvoybHtGo0?s=cl&p=i&mlu=4&ilr=4" target="_blank" rel="noopener">
+        Quero entrar agora
+      </a>
+      <p class="cta-hint">
+        <span>🔒</span> Grupo gratuito • silencioso • sem spam
+      </p>
+    </div>
+  </section>
+
+  <!-- Progress bar -->
+  <div class="vagas-block">
+    <div class="vagas-row">
+      <span class="vagas-label">Vagas preenchidas</span>
+      <span class="vagas-pct" id="pct-label">60%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width: 60%"></div>
+    </div>
+    <p class="vagas-restam">Restam apenas <strong id="vagas-num">24 vagas</strong></p>
+  </div>
+
+  <div class="separator"></div>
+
+  <!-- Feature cards -->
+  <section class="cards-section">
+    <div class="cards-grid">
+
+      <!-- Cupons -->
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+            <line x1="7" y1="7" x2="7.01" y2="7"/>
+          </svg>
+        </div>
+        <h3>Cupons que funcionam</h3>
+        <p>Cupons exclusivos, testados e atualizados para você economizar de verdade na finalização da compra.</p>
+      </div>
+
+      <!-- Casa -->
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <h3>Casa &amp; decoração</h3>
+        <p>As melhores marcas de decoração, cama/banho e eletrodomésticos — com preços que ninguém acredita.</p>
+      </div>
+
+      <!-- Moda -->
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/>
+          </svg>
+        </div>
+        <h3>Moda &amp; beleza</h3>
+        <p>Economia real nos produtos de roupas, acessórios e beleza mais desejados do momento.</p>
+      </div>
+
+      <!-- Ofertas -->
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <h3>Ofertas relâmpago</h3>
+        <p>Você será a primeira a saber quando o preço cair muito — garantindo as melhores ofertas.</p>
+      </div>
+
+    </div>
+
+    <!-- Links verificados — centrado -->
+    <div class="card card-center">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <polyline points="9 12 11 14 15 10"/>
+        </svg>
+      </div>
+      <h3>Links verificados</h3>
+      <p>Segurança total. Apenas lojas oficiais e confiáveis.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#">Política de Privacidade</a>
+      <a href="#">Termos de Uso</a>
+    </div>
+    <p class="footer-credits">Curadoria por @comprei.e.indico 💖</p>
+  </footer>
+
+</div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <div class="toast-avatar" id="toast-avatar">A</div>
+  <div class="toast-text" id="toast-text">
+    Ana acabou de entrar no grupo
+    <span>há poucos segundos</span>
+  </div>
+</div>
+
+<script>
+  // ── Progress bar animation
+  const fill = document.getElementById('progress-fill');
+  const pctLabel = document.getElementById('pct-label');
+  const vagasNum = document.getElementById('vagas-num');
+
+  let pct = 60;
+
+  function tickProgress() {
+    if (pct < 95) {
+      const jump = Math.random() < 0.3 ? 1 : 0;
+      pct = Math.min(95, pct + jump);
+      const vagas = Math.max(2, Math.round((1 - pct / 100) * 40));
+      fill.style.width = pct + '%';
+      pctLabel.textContent = pct + '%';
+      vagasNum.textContent = vagas + ' vagas';
+    }
+    setTimeout(tickProgress, 8000 + Math.random() * 12000);
+  }
+  setTimeout(tickProgress, 15000);
+
+  // ── Toast notifications — apenas nome, sem cidade
+  const names = [
+    'Fernanda', 'Mariana', 'Juliana', 'Camila', 'Larissa',
+    'Beatriz', 'Amanda', 'Patrícia', 'Renata', 'Luiza',
+    'Gabriela', 'Carolina', 'Bárbara', 'Isabela', 'Tatiane',
+    'Priscila', 'Vanessa', 'Aline', 'Débora', 'Letícia',
+  ];
+
+  const toast = document.getElementById('toast');
+  const toastAvatar = document.getElementById('toast-avatar');
+  const toastText = document.getElementById('toast-text');
+  let toastIndex = Math.floor(Math.random() * names.length);
+
+  function showToast() {
+    const name = names[toastIndex % names.length];
+    toastIndex++;
+
+    toastAvatar.textContent = name[0];
+    toastText.innerHTML = `<strong>${name}</strong> acabou de entrar no grupo<span>há poucos segundos</span>`;
+
+    toast.classList.add('show');
+
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3800);
+
+    const next = 7000 + Math.random() * 9000;
+    setTimeout(showToast, next + 3800);
+  }
+
+  setTimeout(showToast, 2500);
+</script>
