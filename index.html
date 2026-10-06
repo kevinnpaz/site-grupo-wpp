@@ -5,7 +5,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comprei e Indico</title>
+  <title>Comprei e Indico | Decoração e achados para casa</title>
+  <meta name="description" content="Descubra achadinhos de decoração, organização e utilidades para sua casa. Entre no grupo gratuito no WhatsApp e acompanhe a seleção de ofertas.">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
 
   <!-- Meta Pixel Code -->
@@ -22,6 +23,7 @@
   fbq('track', 'PageView');
   </script>
   <!-- End Meta Pixel Code -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%23E8728A%22%2F%3E%3Cpath%20d%3D%22M7%2015%2016%207l9%208v10H7z%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M13%2025v-8h6v8%22%20fill%3D%22%23E8728A%22%2F%3E%3C%2Fsvg%3E">
 </head>
 <body>
 <noscript><img height="1" width="1" style="display:none"
@@ -379,7 +381,7 @@ src="https://www.facebook.com/tr?id=2088781188670298&ev=PageView&noscript=1"
     line-height: 1.6;
   }
 
-  /* Links verificados — centered solo card */
+  /* Escolha com informação — centered solo card */
   .card-center {
     align-items: center;
     text-align: center;
@@ -387,6 +389,8 @@ src="https://www.facebook.com/tr?id=2088781188670298&ev=PageView&noscript=1"
     margin: 0 auto;
     border-color: var(--rose-border);
   }
+
+  .cards-grid .card-center { max-width: none; width: 100%; margin: 0; }
 
   /* ── Footer ── */
   .footer {
@@ -479,29 +483,130 @@ src="https://www.facebook.com/tr?id=2088781188670298&ev=PageView&noscript=1"
     .cards-grid { grid-template-columns: 1fr; }
     .card-center { max-width: 100%; }
   }
+
+  .vagas-restam { margin: 4px 0 0; }
+  .simulation-note {
+    margin: 0;
+    text-align: center;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--text-mid);
+  }
+  .toast-slot {
+    min-height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .toast-slot .toast {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: translateY(12px);
+    max-width: 100%;
+    white-space: normal;
+    padding: 10px 16px 10px 12px;
+  }
+  .toast-slot .toast.show { transform: translateY(0); }
+  .toast-slot .toast-text { font-size: 0.78rem; }
+  .toast-slot .toast-text span { font-size: 0.75rem; }
+
+  /* Readable layouts for phones, tablets and enlarged text. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  .page-wrap, .hero, .cta-block, .cards-section, .card,
+  .toast-slot, .toast-text { min-width: 0; }
+  .hero h1, .subtitle, .card h3, .card p, .footer,
+  .toast-text { overflow-wrap: anywhere; }
+  .top-banner { font-size: 0.875rem; line-height: 1.5; letter-spacing: 0.04em; }
+  .hero .subtitle { font-size: 1rem; }
+  .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card h3 { font-size: 1rem !important; line-height: 1.45; }
+  .card p { font-size: 1rem !important; line-height: 1.6; color: var(--text-mid); }
+  .social-proof { max-width: 100%; font-size: 0.875rem; line-height: 1.5; }
+  .cta-btn { min-height: 56px; line-height: 1.45; letter-spacing: 0.02em; }
+  .cta-btn:focus-visible { outline: 3px solid var(--text-dark); outline-offset: 4px; }
+  .cta-hint, .footer-links, .footer-credits { font-size: 0.875rem; line-height: 1.6; }
+  .cta-hint { flex-wrap: wrap; justify-content: center; text-align: center; }
+  .footer-links { gap: 4px 12px; }
+  .footer-links a { display: inline-flex; align-items: center; min-height: 44px; }
+  .vagas-row { gap: 8px; flex-wrap: wrap; }
+  .vagas-label, .vagas-pct, .vagas-restam { font-size: 0.875rem; line-height: 1.5; }
+  .toast-slot { min-height: 80px; }
+  .toast-slot .toast { width: fit-content; border-radius: 28px; }
+  .toast-slot .toast-text { font-size: 0.875rem; line-height: 1.45; }
+  .toast-slot .toast-text span { font-size: 0.75rem; line-height: 1.5; }
+  .toast-avatar { width: 36px; height: 36px; }
+
+  @media (max-width: 599px) {
+    .page-wrap { max-width: 100%; }
+    .hero { padding: 28px 20px 24px; gap: 16px; }
+    .hero h1 { font-size: clamp(1.6rem, 6vw, 2rem); line-height: 1.25; }
+    .hero .subtitle { max-width: 440px; }
+    .vagas-block { padding: 0 20px 20px; }
+    .cards-section { padding: 24px 16px; gap: 16px; }
+    .cards-grid { gap: 12px; }
+    .card { padding: 20px 16px; }
+    .footer { padding: 20px 16px calc(20px + env(safe-area-inset-bottom, 0px)); }
+  }
+  @media (max-width: 420px) {
+    .cards-grid { grid-template-columns: minmax(0, 1fr); }
+    .card { gap: 10px; }
+    .cta-btn { padding: 16px 18px; font-size: 1rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .top-banner, .cta-btn { animation: none; }
+    .toast, .progress-fill, .cta-btn { transition: none; }
+  }
+
+
+  .legal-dialog {
+    width: min(640px, calc(100% - 24px));
+    max-height: 85vh; max-height: 85dvh;
+    padding: 0; border: 1px solid var(--rose-border);
+    border-radius: 20px; background: var(--bg); color: var(--text-dark);
+    font-family: inherit; overflow: auto;
+  }
+  .legal-dialog::backdrop { background: rgba(0, 0, 0, 0.65); }
+  .legal-header { position: sticky; top: 0; display: flex; align-items: center;
+    justify-content: space-between; gap: 16px; padding: 16px 20px;
+    background: var(--bg); border-bottom: 1px solid var(--rose-border); }
+  .legal-header h2 { margin: 0; font-size: 1.2rem; line-height: 1.4; }
+  .legal-header form { margin: 0; }
+  .legal-close { min-height: 44px; padding: 8px 12px; border-radius: 10px;
+    border: 1px solid var(--rose-border); background: var(--rose-light);
+    color: var(--text-dark); font: inherit; cursor: pointer; }
+  .legal-content { padding: 4px 20px 24px; font-size: 1rem; line-height: 1.65;
+    overflow-wrap: anywhere; color: var(--text-mid); }
+  .legal-content h3 { font-size: 1rem; color: var(--text-dark); margin: 24px 0 8px; }
+  .legal-content a { color: var(--text-dark); text-underline-offset: 3px; }
+  .legal-model { padding: 12px; border-radius: 10px; background: var(--rose-light); }
+
 </style>
 
 <div class="page-wrap">
 
   <!-- Banner -->
-  <div class="top-banner">✦ Últimas vagas disponíveis ✦</div>
+  <div class="top-banner">✦ Decoração e achados úteis para sua casa ✦</div>
 
   <!-- Hero -->
   <section class="hero">
-    <h1>Amiga, eu garimpo as melhores promoções ocultas da internet de moda, beleza e casa <span class="heart">💖</span></h1>
+    <h1>Promoções, Bugs e Achadinhos</h1>
 
     <p class="subtitle">
-      Entre no meu Grupo VIP e receba todos os dias promoções reais, cupons que funcionam e achadinhos para você pagar pouco sem perder tempo procurando.
+      Casa nova todo mês sem gastar uma fortuna — organizadores, cozinha, decoração e mais, selecionados a dedo diariamente.
     </p>
 
-    <div class="social-proof">✨ +56.750 mulheres já estão economizando</div>
+    <p class="subtitle"><strong>Chega de perder tempo procurando desconto. A gente já garimpa por você.</strong></p>
+
+    <div class="social-proof">✅ Entrada 100% gratuita</div>
 
     <div class="cta-block">
       <a class="cta-btn" href="https://chat.whatsapp.com/LJ4CAEXHYIWLnXVXIn24iN?mode=gi_t" target="_blank" rel="noopener">
-        Quero entrar agora
+        Quero receber as ofertas!
       </a>
       <p class="cta-hint">
-        <span>🔒</span> Grupo gratuito • silencioso • sem spam
+        Amazon • Shopee • Mercado Livre
       </p>
     </div>
   </section>
@@ -515,7 +620,16 @@ src="https://www.facebook.com/tr?id=2088781188670298&ev=PageView&noscript=1"
     <div class="progress-track">
       <div class="progress-fill" id="progress-fill" style="width: 60%"></div>
     </div>
-    <p class="vagas-restam">Restam apenas <strong id="vagas-num">24 vagas</strong></p>
+    <p class="vagas-restam">Restam apenas <strong id="vagas-num">16 vagas</strong></p>
+    <div class="toast-slot">
+      <div class="toast" id="toast" role="status" aria-live="polite">
+        <div class="toast-avatar" id="toast-avatar">C</div>
+        <div class="toast-text" id="toast-text">
+          <strong>Camila</strong> acabou de entrar no grupo
+          <span>há poucos segundos</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="separator"></div>
@@ -548,16 +662,6 @@ src="https://www.facebook.com/tr?id=2088781188670298&ev=PageView&noscript=1"
         <p>As melhores marcas de decoração, cama/banho e eletrodomésticos — com preços que ninguém acredita.</p>
       </div>
 
-      <!-- Moda -->
-      <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/>
-          </svg>
-        </div>
-        <h3>Moda &amp; beleza</h3>
-        <p>Economia real nos produtos de roupas, acessórios e beleza mais desejados do momento.</p>
-      </div>
 
       <!-- Ofertas -->
       <div class="card">
@@ -570,9 +674,7 @@ src="https://www.facebook.com/tr?id=2088781188670298&ev=PageView&noscript=1"
         <p>Você será a primeira a saber quando o preço cair muito — garantindo as melhores ofertas.</p>
       </div>
 
-    </div>
-
-    <!-- Links verificados — centrado -->
+    <!-- Links verificados — conteúdo centralizado -->
     <div class="card card-center">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -583,27 +685,21 @@ src="https://www.facebook.com/tr?id=2088781188670298&ev=PageView&noscript=1"
       <h3>Links verificados</h3>
       <p>Segurança total. Apenas lojas oficiais e confiáveis.</p>
     </div>
+    </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-links">
-      <a href="#">Política de Privacidade</a>
-      <a href="#">Termos de Uso</a>
+      <a href="#privacidade" data-legal="privacidade" aria-haspopup="dialog">Política de Privacidade</a>
+      <a href="#termos" data-legal="termos" aria-haspopup="dialog">Termos de Uso</a>
     </div>
-    
+    <div class="footer-credits">Comprei e Indico • Achados para casa</div>
+    <p class="cta-hint" style="margin: 0; justify-content: center;">Podemos receber comissão pelos links compartilhados. Preços e disponibilidade podem mudar.</p>
   </footer>
 
 </div>
 
-<!-- Toast notification -->
-<div class="toast" id="toast" role="status" aria-live="polite">
-  <div class="toast-avatar" id="toast-avatar">A</div>
-  <div class="toast-text" id="toast-text">
-    Ana acabou de entrar no grupo
-    <span>há poucos segundos</span>
-  </div>
-</div>
 
 <script>
   // ── Progress bar animation
@@ -615,7 +711,7 @@ src="https://www.facebook.com/tr?id=2088781188670298&ev=PageView&noscript=1"
 
   function tickProgress() {
     if (pct < 95) {
-      const jump = Math.random() < 0.3 ? 1 : 0;
+      const jump = Math.random() < 0.3 ? 2 : 1;
       pct = Math.min(95, pct + jump);
       const vagas = Math.max(2, Math.round((1 - pct / 100) * 40));
       fill.style.width = pct + '%';
@@ -624,14 +720,13 @@ src="https://www.facebook.com/tr?id=2088781188670298&ev=PageView&noscript=1"
     }
     setTimeout(tickProgress, 8000 + Math.random() * 12000);
   }
-  setTimeout(tickProgress, 15000);
+  setTimeout(tickProgress, 5000);
 
   // ── Toast notifications — apenas nome, sem cidade
   const names = [
-    'Fernanda', 'Mariana', 'Juliana', 'Camila', 'Larissa',
+    'Camila', 'Mariana', 'Juliana', 'Fernanda', 'Ana',
     'Beatriz', 'Amanda', 'Patrícia', 'Renata', 'Luiza',
-    'Gabriela', 'Carolina', 'Bárbara', 'Isabela', 'Tatiane',
-    'Priscila', 'Vanessa', 'Aline', 'Débora', 'Letícia',
+    'Gabriela', 'Carolina', 'Isabela', 'Vanessa', 'Letícia',
   ];
 
   const toast = document.getElementById('toast');
@@ -658,5 +753,60 @@ src="https://www.facebook.com/tr?id=2088781188670298&ev=PageView&noscript=1"
 
   setTimeout(showToast, 2500);
 </script>
+
+<dialog class="legal-dialog" id="termos" aria-labelledby="termos-title">
+  <div class="legal-header"><h2 id="termos-title">Termos de Uso</h2><form method="dialog"><button class="legal-close" autofocus>Fechar</button></form></div>
+  <div class="legal-content">
+    <p>Última atualização: 5 de outubro de 2026.</p>
+    <h3>1. Sobre o site</h3>
+    <p>Comprei e Indico divulga achadinhos de decoração e utilidades para casa e oferece um link de acesso a um grupo no WhatsApp. Esta página não recebe pagamentos nem conclui compras.</p>
+    <h3>2. Participação no grupo</h3>
+    <p>A entrada é gratuita e voluntária. Você pode sair do grupo pelo próprio WhatsApp. As regras e os recursos dessa plataforma também se aplicam à participação.</p>
+    <h3>3. Ofertas e compras</h3>
+    <p>Preços, estoques, cupons, frete e condições podem mudar. Antes de comprar, confira o preço final, medidas, avaliações, identificação do vendedor e condições na loja. Erros de preço podem ser corrigidos; nenhuma oferta garante desconto, disponibilidade ou conclusão da compra.</p>
+    <p>Pagamento, entrega, devolução e atendimento da compra são realizados pela loja ou pelo vendedor escolhido. Esta informação não afasta responsabilidades ou direitos previstos na legislação aplicável.</p>
+    <h3>4. Links de afiliado</h3>
+    <p>Podemos receber comissão por compras originadas dos links compartilhados. A divulgação de um produto não significa que ele foi comprado ou testado pessoalmente.</p>
+    <h3>5. Elementos ilustrativos</h3>
+    <p>As notificações com nomes e a barra de vagas desta página são animações com dados fictícios. Não representam entradas de pessoas em tempo real nem a capacidade efetiva do grupo.</p>
+    <h3>6. Atualizações e contato</h3>
+    <p>Estes termos podem ser atualizados para refletir mudanças no funcionamento do site. A data da versão vigente aparece no início deste documento.</p>
+    <p>Este site é apresentado sob o nome <strong>Comprei e Indico</strong>. Para dúvidas, procure a administração pelos contatos dos administradores disponíveis nas informações do <a href="https://chat.whatsapp.com/LJ4CAEXHYIWLnXVXIn24iN?mode=gi_t" target="_blank" rel="noopener noreferrer">grupo no WhatsApp</a>.</p>
+  </div>
+</dialog>
+<dialog class="legal-dialog" id="privacidade" aria-labelledby="privacidade-title">
+  <div class="legal-header"><h2 id="privacidade-title">Política de Privacidade</h2><form method="dialog"><button class="legal-close" autofocus>Fechar</button></form></div>
+  <div class="legal-content">
+    <p>Última atualização: 5 de outubro de 2026.</p>
+    <h3>1. Responsável e contato</h3>
+    <p>Este site é apresentado sob o nome <strong>Comprei e Indico</strong>. Para questões de privacidade ou solicitações relacionadas aos seus dados, procure a administração pelos contatos dos administradores disponíveis nas informações do <a href="https://chat.whatsapp.com/LJ4CAEXHYIWLnXVXIn24iN?mode=gi_t" target="_blank" rel="noopener noreferrer">grupo no WhatsApp</a>.</p>
+    <h3>2. Informações na navegação</h3>
+    <p>A página não possui formulário de cadastro. Isso não significa ausência de tratamento de dados: o serviço de hospedagem e os recursos externos podem receber informações técnicas da conexão, do navegador e das páginas acessadas.</p>
+    <h3>3. Meta Pixel e cookies</h3>
+    <p>O site contém Meta Pixel configurado para enviar o evento de visita à página (PageView). Essa ferramenta pode usar cookies e identificadores para mensuração de publicidade. Na versão atual, o carregamento é automático e a página não possui um painel de consentimento ou de preferências de cookies.</p>
+    <p>Você pode consultar as configurações de privacidade da Meta e do seu navegador. Essas configurações não equivalem a um mecanismo de consentimento no site. Saiba mais na <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer">Política de Privacidade da Meta</a>.</p>
+    <h3>4. Fontes e serviços externos</h3>
+    <p>A fonte Poppins é carregada pelo Google Fonts, com requisições aos servidores do Google. Consulte as <a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener noreferrer">informações de privacidade do Google Fonts</a>.</p>
+    <h3>5. WhatsApp e lojas</h3>
+    <p>Ao clicar no botão do grupo, você acessa o WhatsApp. Ao entrar, informações do seu perfil podem ficar visíveis conforme os recursos e as configurações da plataforma. Lojas acessadas por links possuem suas próprias políticas e práticas de tratamento de dados.</p>
+    <h3>6. Seus direitos</h3>
+    <p>Conforme as condições previstas na legislação, você pode solicitar informações sobre o tratamento, acesso ou correção de dados e, quando aplicável, eliminação ou revogação de consentimento. Encaminhe sua solicitação à administração pelo canal indicado acima. Não publique dados sensíveis ou documentos pessoais no grupo; utilize uma conversa privada com a administração.</p>
+    <h3>7. Finalidades e serviços de terceiros</h3>
+    <p>Os recursos externos são utilizados para exibir a página, carregar a tipografia, medir visitas para publicidade e permitir o acesso ao grupo. O tratamento realizado pela hospedagem, Meta, Google e WhatsApp segue também as políticas desses serviços, que podem operar em outros países.</p>
+    <h3>8. Armazenamento e atualizações</h3>
+    <p>Esta página não mantém um cadastro próprio de visitantes. Registros técnicos, cookies e dados tratados pelos serviços externos seguem os prazos e configurações desses provedores. Os nomes exibidos nas notificações são fictícios, sem origem em uma lista de participantes.</p>
+    <p>Esta política pode ser atualizada quando houver mudanças no site. Consulte a data indicada no início para identificar a versão vigente.</p>
+  </div>
+</dialog>
+<script>
+  document.querySelectorAll('[data-legal]').forEach(link => {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      const dialog = document.getElementById(link.dataset.legal);
+      if (!dialog.open) dialog.showModal();
+    });
+  });
+</script>
+
 </body>
 </html>
